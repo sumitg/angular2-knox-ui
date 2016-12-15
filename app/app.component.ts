@@ -1,10 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {TopologyService} from "./topology.service";
+
 @Component({
-    selector: 'my-app',
+    selector: 'topology-management',
     template: `
-    <topology></topology>
-  `
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <topology></topology>
+         </div>
+          <div class="col-md-7">
+            <topology-detail-panel></topology-detail-panel>
+          </div>
+        </div>
+      </div>
+  `,
+    providers: [TopologyService]
 })
-export class AppComponent {
-    title = 'Apache Knox Manager';
+export class AppComponent implements OnInit {
+    topology: string;
+
+    constructor(private topologyService : TopologyService) {
+    }
+
+    ngOnInit(): void {
+        this.topologyService.changedTopology$.subscribe(value => this.topology = value);
+    }
 }

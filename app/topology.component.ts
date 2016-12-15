@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Topology} from './topology';
 import {TopologyService} from "./topology.service";
-import { Router } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 
 
@@ -26,9 +25,7 @@ import { Subscription }   from 'rxjs/Subscription';
         </tbody>
         </table>
         </div>
-
-       `,
-    providers: [TopologyService]
+       `
 })
 // <topology-detail [populateContent]="selectedTopology"></topology-detail>
 export class TopologyComponent implements OnInit {
@@ -38,8 +35,7 @@ export class TopologyComponent implements OnInit {
     selectedTopology: Topology;
 
 
-    constructor(    private router: Router,
-                    private topologyService : TopologyService) {
+    constructor(private topologyService : TopologyService) {
     }
 
     getTopologies(): void {
@@ -48,12 +44,12 @@ export class TopologyComponent implements OnInit {
 
     ngOnInit(): void {
         this.getTopologies();
-        this.topologyService.changeTopologySource.subscribe(value => console.log('received new subject value: '));
+        this.topologyService.changedTopology$.subscribe(value => this.getTopologies());
     }
 
     onSelect(topology: Topology): void {
         this.selectedTopology = topology;
-        this.router.navigate(['/detail', this.selectedTopology.href]);
+        this.topologyService.selectedTopology(topology);
     }
 }
 

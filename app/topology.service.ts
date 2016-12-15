@@ -10,9 +10,11 @@ export class TopologyService {
 
     apiUrl = 'http://localhost:8443/gateway/admin/api/v1/';
     topologiesUrl = this.apiUrl + 'topologies';
-    changeTopologySource = new Subject<string>();
-      // Observable string streams
-    changeTopology$ = this.changeTopologySource.asObservable();
+    selectedTopologySource = new Subject<Topology>();
+    selectedTopology$ = this.selectedTopologySource.asObservable();
+    changedTopologySource = new Subject<string>();
+    changedTopology$ = this.changedTopologySource.asObservable();
+
     constructor(private http: Http) { }
 
     getTopologies(): Promise<Topology[]> {
@@ -53,7 +55,6 @@ export class TopologyService {
         let xheaders = new Headers();
         this.createXmlAuthorizationHeader(xheaders);
         let url = this.topologiesUrl + "/" + name;
-     this.changedTopology("created topology");        
         return this.http
     .put(url, xml, {headers: xheaders})
     .toPromise()
@@ -63,9 +64,7 @@ export class TopologyService {
 
     deleteTopology(href: string): Promise<string> {
        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
-     this.changedTopology("deleted topology");        
-        
+        this.createAuthorizationHeader(headers);        
         return this.http.delete(href, {
             headers: headers
         } )
@@ -89,10 +88,14 @@ export class TopologyService {
     }
 
 
-    changedTopology(value: string) {
-                console.log('changing------ ' + value);
-        this.changeTopologySource.next(value);
+    selectedTopology(value: Topology) {
+        this.selectedTopologySource.next(value);
     }
+
+    changedTopology(value: string) {
+        this.changedTopologySource.next(value);
+    }
+
 
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only

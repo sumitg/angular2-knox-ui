@@ -10,7 +10,6 @@ import {TopologyDetailComponent} from "./topology-detail.component";
 import {GatewayVersionService} from "./gateway-version.service";
 import {GatewayVersionComponent} from "./gateway-version.component";
 import {TopologyComponent} from "./topology.component";
-import { AppRoutingModule }     from './app-routing.module';
 import {TopologyDetailPanelComponent} from "./topology-detail-panel.component";
 import {XmlPipe} from "./xml.pipe";
 import {JsonPrettyPipe} from "./json-pretty.pipe";
@@ -24,7 +23,6 @@ import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal'
   imports: [ BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule,
     Ng2Bs3ModalModule
     ],
   declarations: [ AppComponent,
@@ -40,7 +38,6 @@ import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal'
   providers: [ TopologyService,
     GatewayVersionService ],
   bootstrap: [ AppComponent,
-    GatewayVersionComponent,
-    TopologyDetailPanelComponent]
+    GatewayVersionComponent]
 })
 export class AppModule { }

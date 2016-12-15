@@ -63,9 +63,7 @@ import 'rxjs/add/operator/switchMap';
             <button type="button" class="btn btn-primary btn-sm" (click)="deleteConfirmModal.close()">Ok</button>
         </modal-footer>
     </modal>
-  `,
-    providers: [TopologyService]
-    
+  `
 })
 
 export class TopologyDetailComponent implements OnInit {
@@ -107,6 +105,7 @@ export class TopologyDetailComponent implements OnInit {
         } else {
             this.topologyService.createTopology(this.newTopologyName, this.topology);
         }
+        this.topologyService.changedTopology("created top");
         // this.router.navigate(['/detail', this.topologyService.topologiesUrl, this.newTopologyName]);
 
     }
