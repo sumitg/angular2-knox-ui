@@ -100,7 +100,7 @@ export class TopologyDetailPanelComponent implements OnInit {
             this.topologyService.createTopology(this.newTopologyName, this.changedTopology)
             .then(value => this.topologyService.changedTopology(this.newTopologyName));
         } else {
-            this.topologyService.createTopology(this.newTopologyName, this.topology.content)
+            this.topologyService.createTopology(this.newTopologyName, this.topologyContent)
             .then(value => this.topologyService.changedTopology(this.newTopologyName));
         }
     }

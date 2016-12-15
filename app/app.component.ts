@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {TopologyService} from "./topology.service";
 
 @Component({
@@ -17,13 +17,8 @@ import {TopologyService} from "./topology.service";
   `,
     providers: [TopologyService]
 })
-export class AppComponent implements OnInit {
-    topology: string;
 
+export class AppComponent {
     constructor(private topologyService : TopologyService) {
-    }
-
-    ngOnInit(): void {
-        this.topologyService.changedTopology$.subscribe(value => this.topology = value);
     }
 }

@@ -27,7 +27,6 @@ import { Subscription }   from 'rxjs/Subscription';
         </div>
        `
 })
-// <topology-detail [populateContent]="selectedTopology"></topology-detail>
 export class TopologyComponent implements OnInit {
 
     value :any;
