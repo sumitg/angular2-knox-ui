@@ -8,7 +8,7 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
     template: `
      <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{titleSuffix}}</h3>
+            <h4 class="panel-title">{{title}} <span class="label label-default pull-right">{{titleSuffix}}</span></h4>
          </div>
      <div *ngIf="topologyContent" class="panel-body">
       <div ace-editor
@@ -78,12 +78,11 @@ export class TopologyDetailPanelComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.titleSuffix = this.title;
         this.topologyService.selectedTopology$.subscribe(value => this.populateContent(value));
     }
 
     setTitle(value : string) {
-        this.titleSuffix = this.title + " - " + value;
+        this.titleSuffix = value;
     }
 
     onChange(code: any) {

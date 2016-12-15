@@ -7,8 +7,8 @@ import {GatewayVersionService} from "./gateway-version.service";
     selector: 'gateway-version',
     template: `
         <div *ngIf="gatewayVersion">
-            <span class="small">Knox Gateway Version {{this.gatewayVersion.version}}</span>
-            <span class="small">Hash {{this.gatewayVersion.hash}}</span>
+            <span class="small"><cite>Knox Gateway Version</cite> {{this.gatewayVersion.version}}</span>
+            <span class="small"><cite>Hash</cite> {{this.gatewayVersion.hash}}</span>
 </div>`,
     providers: [GatewayVersionService]
 })
